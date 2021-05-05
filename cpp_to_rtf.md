@@ -1,6 +1,6 @@
 # CPP_TO_RTF
 
-I wrote this script to autoate a task I was having to do for my Intro to C++ class.
+I wrote this script to automate a task I was having to do for my Intro to C++ class.
 
 We were having to submit source code in `.cpp` and `.rtf` formats.  I learned
 later in the semester that this was because the `.rtf` files were fed into a
@@ -25,7 +25,7 @@ accomplish what I needed.
 3. Gather all the HTML files and conver them to `.rtf` using LibreOffice's
 `unoconv` command
 4. Finally, zip all the required files into a `.zip` file, automatically naming
-the file "Cole_Baty_<project folder name>.zip"
+the file "Cole_Baty_\<project folder name\>.zip"
 
 This saved me lots of time manually converting each file, especially for the
 "Lab" assignments, which could many files per task (`.cpp`, `.h`, etc.).
