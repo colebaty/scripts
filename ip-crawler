@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# naive script to scan for ip addresses [2,255] on the same network as the host
+# if ping returns 0 or 2, the address is up, and it is recorded
+
+# get local ip
+
+# stores 'xxx.xxx.xxx'
+IP_ADDRESS_PREFIX=$(ifconfig en0 | grep -e 'inet ' | awk '{ print $2 }' | awk -F '.' '{print  $1"."$2"."$3 }')
+
+# stores the value following the last '.'; e.g. 192.168.0.18 => 18
+IP_ADDRESS_END=$(ifconfig en0 | grep -e 'inet ' | awk '{ print $2 }' | awk -F '.' '{print  $4 }')
+
+# the full ip address
+IP_ADDRESS_FULL=$(ifconfig en0 | grep -e 'inet ' | awk '{ print $2 }')
+
+for n in {2..255}
+do
+    #change 18 to IP_ADDRESS when ready for it
+    if (( $n == 18 )) ; then
+        continue;
+    else
+        # -q quietly -o exit after first received response -W(ait) 50(ms), pipe
+        # to /dev/null
+        ping -q -o -W 50 $IP_ADDRESS_PREFIX.$n 1>&2>/dev/null
+        if (( $? == 0 )) ; then
+            echo "response received from $IP_ADDRESS_PREFIX.$n"
+        fi
+    fi
+done
