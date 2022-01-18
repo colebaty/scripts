@@ -20,9 +20,6 @@ set timeout 3
 send_user "hello, $_user@$_switch\n"
 
 spawn ssh "-p 2220" "$_user@$_switch" "/bin/bash"
-expect {
-    ":~\$ " { send "pwd\r" }
-    "> $"   { send "pwd\r" }
-}
-expect "total$" { send_user "success!\n" }
+send "touch test"
+
 # interact
