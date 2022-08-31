@@ -1,3 +1,4 @@
+#!/usr/bin/bash
 #VERSION 1
 #rm Cole_Baty*.html Cole_Baty*.rtf Cole_Baty*.zip 2>/dev/null
 #cwd=${PWD##*/}
