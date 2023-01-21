@@ -15,13 +15,13 @@ if [ -S /tmp/ssh*/*agent* ]; then
     echo "ssh-agent socket exists"
 
     # grabs the first socket owned by the current user
-    socket=$(find /tmp -name "*agent*" -user `whoami` 2>/dev/null | head -n1)
+    socket=$(find /tmp -name "*agent*" -user `whoami`)
 
     # the first time ssh-agent is called, the socket is created with that PID.
     # after the socket is created, ssh-agent forks into the background, and the
     # child process has a PID that is one more than that of the parent process
 
-    ppid=$(echo $socket | awk -F'\.' '{print $2}' ) # parent process
+    ppid=$(echo $socket | awk -F'\.' '{print $2}' 2>/dev/null) # parent process
     pid=$(($ppid + 1)) # pid of child forked into background
 
     echo "socket: $socket"
