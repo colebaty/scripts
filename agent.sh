@@ -11,11 +11,11 @@
 # source /path/to/this/script 2>/dev/null
 
 # bash-foo to test for an ssh-agent socket in /tmp
-if [ -S "/tmp/ssh*/*agent*" ]; then 
+if [ -S /tmp/ssh*/*agent* ]; then 
     echo "ssh-agent socket exists"
 
     # grabs the first socket owned by the current user
-    socket=$(find /tmp -name "*agent*" -user `whoami`)
+    socket=$(find /tmp -name "*agent*" -user `whoami` 2>/dev/null)
 
     # the first time ssh-agent is called, the socket is created with that PID.
     # after the socket is created, ssh-agent forks into the background, and the
