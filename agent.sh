@@ -15,7 +15,7 @@ if [ -S /tmp/ssh*/*agent* ]; then
     echo "ssh-agent socket exists"
 
     # grabs the first socket owned by the current user
-    socket=$(find /tmp -name "*agent*" -user `whoami` 2>/dev/null)
+    socket=$(find /tmp -name "*agent*" -user `whoami` | head -n1 2>/dev/null)
 
     # the first time ssh-agent is called, the socket is created with that PID.
     # after the socket is created, ssh-agent forks into the background, and the
